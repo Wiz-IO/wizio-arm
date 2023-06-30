@@ -1,0 +1,35 @@
+{
+  "name"                : "wizio-arm",
+  "title"               : "WizIO - ARM",
+  "description"         : "Development Platform(IO) for ARM 2023 Georgi Angelov",
+  "homepage"            : "http://www.wizio.eu/",
+  "engines"             : { "platformio": "^5" },
+  "repository"          : { "type": "git", "url": "https://github.com/Wiz-IO/wizio-arm.git" },
+  "packageRepositories" : [ "http://dl.platformio.org/packages/manifest.json" ],
+  "version"             : "1.0.0",
+  "frameworks"  : {
+    "ARM-Mx"    : {
+      "script"  : "builder/frameworks/build-ARM-Mx.py"
+    },    
+    "ARM-M0"    : {
+      "script"  : "builder/frameworks/build-ARM-M0.py"
+    },
+    "ARM-M3"    : {
+      "script"  : "builder/frameworks/build-ARM-M3.py"
+    },
+    "ARM-M4"    : {
+      "script"  : "builder/frameworks/build-ARM-M4.py"
+    }
+  },
+  "packages"      : {
+    "framework-wizio-arm" : {
+      "type"      : "framework",
+      "version"   : "https://github.com/Wiz-IO/framework-wizio-arm.git"
+    },
+    "toolchain-gccarmnoneeabi": {
+      "type"      : "toolchain",
+      "version"   : "~1.90201.0"
+    }
+
+  }
+}
