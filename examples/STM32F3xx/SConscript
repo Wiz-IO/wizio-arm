@@ -1,0 +1,43 @@
+# Copyright 2023 (c) WizIO ( Georgi Angelov )
+
+from os.path import join
+Import('env')
+
+# Your PATH to STM32 SDK ( HAL & CMSIS )
+SDK = 'C:/Users/Admin/.platformio/packages/framework-wizio-stm'
+
+env.Append( 
+    CPPDEFINES      = [
+        'USE_HAL_DRIVER',
+        'STM32F303xC'        
+    ],
+    CPPPATH         = [
+        join(SDK, "Drivers", "STM32F3xx_HAL_Driver", "Inc"),
+        join(SDK, "Drivers", "STM32F3xx_HAL_Driver", "Inc", "Legacy"),
+        join(SDK, "Drivers", "CMSIS", "Device", "ST", "STM32F3xx", "Include"),
+        join(SDK, "Drivers", "CMSIS", "Include"),           
+    ],
+    CFLAGS          = [  ],
+    CCFLAGS         = [  ],
+    CXXFLAGS        = [  ],
+    LINKFLAGS       = [      
+        '--entry=Reset_Handler',         
+    ],  
+    LIBS            = [  ], 
+    LIBSOURCE_DIRS  = [  ],
+    LIBPATH         = [  ],               
+    LDSCRIPT_PATH   = join('src', 'STM32F303VCTx_FLASH.ld')
+) 
+
+# Build HAL
+env.BuildSources(
+    join('$BUILD_DIR', "HAL"),
+    join(SDK, "Drivers","STM32F3xx_HAL_Driver", "Src")
+)
+
+env.BoardConfig().update('upload.maximum_ram_size',  40960) # optional
+env.BoardConfig().update('upload.maximum_size',     262144) # optional    
+
+
+asLIB = True
+env.SConscript( '$FRAMEWORK_DIR/lib/ring_v1/SConscript', exports=['env', 'asLIB'] )
