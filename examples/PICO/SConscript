@@ -5,53 +5,8 @@
 from os.path import join
 Import('env')
 
-# Path to pico-sdk
+# EDIT the path to your pico-sdk ( git clone https://github.com/raspberrypi/pico-sdk )
 SDK = 'F:/test/pico-sdk'
-
-INCLUDE_LIST = [
-    join(SDK, 'src', 'rp2040', 'hardware_regs', 'include'),
-    join(SDK, 'src', 'rp2040', 'hardware_structs', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_adc', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_base', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_claim', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_clocks', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_divider', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_dma', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_exception', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_flash', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_gpio', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_i2c', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_interp', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_irq', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_rtc', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_pio', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_pll', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_pwm', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_resets', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_spi', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_sync', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_timer', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_uart', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_vreg', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_watchdog', 'include'),
-    join(SDK, 'src', 'rp2_common', 'hardware_xosc', 'include'),   
-
-    join(SDK, 'src', 'common', 'pico_base', 'include'),
-    join(SDK, 'src', 'common', 'pico_binary_info', 'include'),
-    join(SDK, 'src', 'common', 'pico_bit_ops', 'include'),
-    join(SDK, 'src', 'common', 'pico_divider', 'include'),
-    join(SDK, 'src', 'common', 'pico_stdlib', 'include'),
-    join(SDK, 'src', 'common', 'pico_sync', 'include'),
-    join(SDK, 'src', 'common', 'pico_time', 'include'),
-    join(SDK, 'src', 'common', 'pico_usb_reset_interface', 'include'),
-    join(SDK, 'src', 'common', 'pico_util', 'include'),
-
-    join(SDK, 'src', 'rp2_common', 'pico_platform', 'include'),
-    join(SDK, 'src', 'rp2_common', 'pico_bootrom', 'include'),
-    join(SDK, 'src', 'rp2_common', 'pico_printf', 'include'),
-    join(SDK, 'src', 'rp2_common', 'pico_stdio', 'include'),
-    join(SDK, 'src', 'rp2_common', 'pico_stdio_uart', 'include'),    
-]
 
 env.Append(
     CPPDEFINES      = [
@@ -59,7 +14,51 @@ env.Append(
         'PICO_ON_DEVICE=1',   
         'PICO_STDIO_UART'         
     ],
-    CPPPATH         = INCLUDE_LIST,
+    CPPPATH         = [
+        join(SDK, 'src', 'rp2040', 'hardware_regs', 'include'),
+        join(SDK, 'src', 'rp2040', 'hardware_structs', 'include'),
+
+        join(SDK, 'src', 'rp2_common', 'hardware_adc', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_base', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_claim', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_clocks', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_divider', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_dma', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_exception', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_flash', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_gpio', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_i2c', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_interp', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_irq', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_rtc', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_pio', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_pll', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_pwm', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_resets', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_spi', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_sync', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_timer', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_uart', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_vreg', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_watchdog', 'include'),
+        join(SDK, 'src', 'rp2_common', 'hardware_xosc', 'include'),   
+
+        join(SDK, 'src', 'common', 'pico_base', 'include'),
+        join(SDK, 'src', 'common', 'pico_binary_info', 'include'),
+        join(SDK, 'src', 'common', 'pico_bit_ops', 'include'),
+        join(SDK, 'src', 'common', 'pico_divider', 'include'),
+        join(SDK, 'src', 'common', 'pico_stdlib', 'include'),
+        join(SDK, 'src', 'common', 'pico_sync', 'include'),
+        join(SDK, 'src', 'common', 'pico_time', 'include'),
+        join(SDK, 'src', 'common', 'pico_usb_reset_interface', 'include'),
+        join(SDK, 'src', 'common', 'pico_util', 'include'),
+
+        join(SDK, 'src', 'rp2_common', 'pico_platform', 'include'),
+        join(SDK, 'src', 'rp2_common', 'pico_bootrom', 'include'),
+        join(SDK, 'src', 'rp2_common', 'pico_printf', 'include'),
+        join(SDK, 'src', 'rp2_common', 'pico_stdio', 'include'),
+        join(SDK, 'src', 'rp2_common', 'pico_stdio_uart', 'include'),    
+    ],
     CFLAGS          = [  ],
     CCFLAGS         = [  ],
     CXXFLAGS        = [  ],
@@ -78,19 +77,26 @@ env.Append(
 env.BuildSources( 
     join('$BUILD_DIR', 'startup'),
     join(SDK, 'src', 'rp2_common', 'pico_standard_link'),
-    src_filter = [ '-<*>', '+<crt0.S>']
+    src_filter = [ 
+        '-<*>', 
+        '+<crt0.S>'
+    ]
 )
 
 env.BuildSources( 
     join('$BUILD_DIR', 'rp2_common', 'hardware'),
     join(SDK, 'src', 'rp2_common'), 
-    src_filter = [ '-<*>', '+<hardware_*>']
+    src_filter = [ 
+        '-<*>', 
+        '+<hardware_*>'
+    ]
 )
 
 env.BuildSources( 
     join('$BUILD_DIR', 'rp2_common', 'common'),
     join(SDK, 'src', 'rp2_common'), 
-    src_filter = [ '-<*>', 
+    src_filter = [ 
+        '-<*>', 
         '+<pico_runtime>',
         '+<pico_bootrom>',
         '+<pico_platform>',
@@ -102,7 +108,8 @@ env.BuildSources(
 env.BuildSources( 
     join('$BUILD_DIR', 'common'),
     join(SDK, 'src', 'common'), 
-    src_filter = [ '-<*>', 
+    src_filter = [ 
+        '-<*>', 
         '+<pico_sync>',
         '+<pico_time>',
         '+<pico_util>',
@@ -111,3 +118,5 @@ env.BuildSources(
 
 env.BoardConfig().update('upload.maximum_ram_size',  262144) 
 env.BoardConfig().update('upload.maximum_size',     2097152)
+
+# and this is a minimum build for RPI Pico ...
